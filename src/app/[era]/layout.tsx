@@ -1,15 +1,23 @@
 import { notFound } from 'next/navigation';
 import { EraData, type Era } from '@/types/era';
 
-export default function EraLayout({
+interface EraLayoutProps {
+  children: React.ReactNode;
+  params: Promise<{ era: string }> | { era: string };
+}
+
+export default async function EraLayout({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: { era: string };
-}) {
-  // Validate that the era exists
-  if (!Object.values(EraData).some(e => e.id === params.era)) {
+}: EraLayoutProps) {
+  const resolvedParams = await params;
+  
+  // Type guard to validate era
+  const isValidEra = (era: string): era is Era => {
+    return Object.values(EraData).some(e => e.id === era);
+  };
+
+  if (!isValidEra(resolvedParams.era)) {
     notFound();
   }
 
