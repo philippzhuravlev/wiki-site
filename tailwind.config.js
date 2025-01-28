@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ['Cambria', 'Georgia', 'serif'],
+      },
       colors: {
         primary: '#8B4513', // Saddle brown for primary actions
         background: {
