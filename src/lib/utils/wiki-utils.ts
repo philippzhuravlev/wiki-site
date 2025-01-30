@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 export interface WikiLink {
   text: string;      // Display text
   slug: string;      // URL slug
@@ -40,4 +43,10 @@ export function parseWikiLinks(content: string): { text: string, links: WikiLink
   );
 
   return { text: processedText, links };
-} 
+}
+
+// Utility function to load a .txt file as a string
+export const loadTextFile = (filePath: string): string => {
+    const fullPath = path.join(process.cwd(), filePath);
+    return fs.readFileSync(fullPath, 'utf-8'); // Read the file as a string
+}; 

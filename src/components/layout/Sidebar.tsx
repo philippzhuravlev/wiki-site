@@ -27,7 +27,7 @@ export function Sidebar() {
           Main Page
         </Link>
         <Link 
-          href="/list_of_languages"
+          href="/list-of-languages"
           className="px-4 py-2 rounded-md text-text hover:bg-surface-dark/5 hover:text-primary transition-colors"
         >
           List of Languages

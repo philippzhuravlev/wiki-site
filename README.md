@@ -25,13 +25,17 @@ src/
 │   │   ├── page.tsx      # Dynamic era page handler
 │   │   └── layout.tsx    # Era-specific layout
 ├── content/
+│   ├── ageless-pages/
+│   │   ├── frontpage.txt
+│   │   ├── list-of-languages.txt
+│   │   ├── ...
 │   ├── golden-period/
 │   │   ├── metadata.ts   # Region mappings for this era
 │   │   ├── frontpage.txt # Era overview
-│   │   └── pages/        # WikiText content files
-│   │       ├── valloraich.txt
-│   │       ├── theutoland.txt
-│   │       └── ...
+│   │   ├── pages/        # WikiText content files
+│   │   ├── valloraich.txt
+│   │   ├── theutoland.txt
+│   │   ├── ...
 │   ├── steel-era/
 │   │   └── ...
 │   ├── coal-age/
@@ -90,6 +94,7 @@ More content...
 - Search functionality with era filters
 - Interactive timeline and map visualizations
 - Sidebar navigation
+- **Unified Page Parser**: In the future, we might implement a single page parser for "age-less" pages like the list of languages and the front page. This parser will load `.txt` files similarly to how "aged" pages are handled.
 
 ## Development Priorities
 1. Basic era navigation and content rendering
