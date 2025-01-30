@@ -5,10 +5,26 @@ A personal fantasy world wiki showcasing different historical eras (Golden Perio
 
 ## Core Features
 - Era-based navigation with equivalent locations across ages
-- WikiText markup rendering for content
-- URL format: `site-url/[era]/[place]#[section]`
+- Automatic region mapping between eras using metadata.json
+- URL hash preservation when switching eras
 - Cross-era navigation that maintains section position
 - Header with era navigation (Golden/Steel/Coal)
+
+## Planned Features
+### Nested Content Structure
+- Support for nested folders in content (e.g., regions/settlements/stonetown)
+- Automatic frontpage.txt loading for directory index pages
+- URL structure matching content structure:
+  - /coal/regions → content/coal/regions/frontpage.txt
+  - /coal/regions/settlements → content/coal/regions/settlements/frontpage.txt
+  - /coal/regions/settlements/stonetown → content/coal/regions/settlements/stonetown.txt
+
+### Required Changes for Nested Structure
+- Replace [era]/[page] with [era]/[...page] route to handle nested paths
+- Update file resolution logic to handle nested paths
+- Modify metadata structure to support nested equivalents
+- Add breadcrumb navigation for nested pages
+- Update era navigation to handle nested equivalent pages
 
 ## Technical Stack
 - Next.js with TypeScript
@@ -27,25 +43,37 @@ src/
 ├── content/
 │   ├── ageless-pages/
 │   │   ├── frontpage.txt
-│   │   ├── list-of-languages.txt
-│   │   ├── ...
-│   ├── golden-period/
-│   │   ├── metadata.ts   # Region mappings for this era
-│   │   ├── frontpage.txt # Era overview
-│   │   ├── pages/        # WikiText content files
-│   │   ├── valloraich.txt
-│   │   ├── theutoland.txt
-│   │   ├── ...
-│   ├── steel-era/
 │   │   └── ...
-│   ├── coal-age/
+│   ├── golden/
+│   │   ├── metadata.json
+│   │   ├── frontpage.txt      # Era overview
+│   │   ├── regions/           # Category folder
+│   │   │   ├── frontpage.txt  # Regions overview
+│   │   │   ├── valloraich/    # Region folder
+│   │   │   │   ├── frontpage.txt
+│   │   │   │   └── settlements/
+│   │   │   │       ├── frontpage.txt
+│   │   │   │       └── oldtown.txt
+│   │   ├── events/            # Another category
+│   │   │   ├── frontpage.txt
+│   │   │   └── great-war.txt
+│   ├── steel/
+│   │   └── ...
+│   ├── coal/
 │   │   └── ...
 │   └── images/          # Shared image repository
+├── lib/
+│   └── utils/                    # All utility functions
+│       ├── file-utils.ts         # File operations
+│       ├── wiki-utils.ts         # Wiki-specific utilities (parsing, navigation)
+│       └── era-utils.ts          # Era-specific utilities
 ├── components/
-│   └── wiki/
-│       ├── WikiRenderer.tsx    # WikiText to HTML converter
-│       ├── EraNav.tsx          # Era switching header
-│       └── SectionNav.tsx      # Section navigation/tracking
+│   ├── wiki/                     # Wiki content components
+│   │   ├── WikiRenderer.tsx      # Content display component
+│   │   └── WikiLink.tsx         # Wiki link component
+│   └── layout/                   # Layout components
+│       ├── Header.tsx           # Main header
+│       └── EraSelector.tsx      # Era switching component
 └── types/
     ├── era.ts           # Era type definitions
     └── metadata.ts      # Content metadata types

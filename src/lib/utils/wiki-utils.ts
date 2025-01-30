@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { promises as fs } from 'fs';
 import path from 'path';
 
 export interface WikiLink {
@@ -46,7 +46,42 @@ export function parseWikiLinks(content: string): { text: string, links: WikiLink
 }
 
 // Utility function to load a .txt file as a string
-export const loadTextFile = (filePath: string): string => {
+export async function loadTextFile(filePath: string): Promise<string> {
+  try {
     const fullPath = path.join(process.cwd(), filePath);
-    return fs.readFileSync(fullPath, 'utf-8'); // Read the file as a string
-}; 
+    const content = await fs.readFile(fullPath, 'utf8');
+    return content;
+  } catch (error) {
+    console.error(`Error loading file ${filePath}:`, error);
+    throw error;
+  }
+}
+
+interface RegionMetadata {
+  id: string;
+  equivalents: Record<string, string>;
+}
+
+export async function getEquivalentRegion(currentEra: string, targetEra: string, currentRegion: string): Promise<string | null> {
+  try {
+    const metadataPath = path.join(process.cwd(), 'src', 'content', currentEra, 'metadata.json');
+    const metadataContent = await fs.readFile(metadataPath, 'utf8');
+    const { regions } = JSON.parse(metadataContent);
+    
+    const currentRegionData = regions.find((r: RegionMetadata) => r.id === currentRegion);
+    if (!currentRegionData) return null;
+    
+    return currentRegionData.equivalents[targetEra] || null;
+  } catch (error) {
+    console.error('Error finding equivalent region:', error);
+    return null;
+  }
+}
+
+export function getEraNavigationUrl(targetEra: string, currentEra: string | undefined, currentRegion: string | undefined, hash: string = ''): string {
+  if (!currentEra || !currentRegion || currentEra === targetEra) {
+    return `/${targetEra}${hash}`;
+  }
+  
+  return `/${targetEra}/${currentRegion}${hash}`;
+} 

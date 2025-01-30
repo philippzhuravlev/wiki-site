@@ -1,0 +1,18 @@
+{
+    "regions": [
+      {
+        "id": "angbria",
+        "equivalents": {
+          "golden": "valloraich",
+          "steel": "albrion"
+        }
+      },
+      {
+        "id": "allemannland",
+        "equivalents": {
+          "golden": "theutoland",
+          "steel": "carowiga"
+        }
+      }
+    ]
+  } 

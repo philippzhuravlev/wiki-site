@@ -2,14 +2,15 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown'; // Temporary, will replace with WikiText
 
 interface WikiRendererProps {
-  content: string;
+  content: string | Promise<string>;
 }
 
-export function WikiRenderer({ content }: WikiRendererProps) {
-  // This will be replaced with WikiText parser later
+export async function WikiRenderer({ content }: WikiRendererProps) {
+  const resolvedContent = await content;
+  
   return (
     <div className="prose prose-brown max-w-none">
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <ReactMarkdown>{resolvedContent}</ReactMarkdown>
     </div>
   );
 } 
