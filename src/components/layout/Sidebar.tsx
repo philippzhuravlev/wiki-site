@@ -5,7 +5,7 @@ export function Sidebar() {
   return (
     <aside className="w-48 h-screen fixed left-0 top-0 bg-surface border-r border-border flex flex-col">
       {/* Logo */}
-      <div className="flex items-center justify-center p-2 pl-8">
+      <div className="flex items-center justify-center p-2 pl-11">
         <Link href="/" className="hover:opacity-90 transition-opacity">
           <Image
             src="/favicon.ico"
@@ -25,6 +25,12 @@ export function Sidebar() {
           className="px-4 py-2 rounded-md text-text hover:bg-surface-dark/5 hover:text-primary transition-colors"
         >
           Main Page
+        </Link>
+        <Link 
+          href="/list_of_languages"
+          className="px-4 py-2 rounded-md text-text hover:bg-surface-dark/5 hover:text-primary transition-colors"
+        >
+          List of Languages
         </Link>
         <Link 
           href="/random"

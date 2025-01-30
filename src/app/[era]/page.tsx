@@ -1,5 +1,7 @@
 import { EraData, type Era } from '@/types/era';
+import { Content } from 'next/font/google';
 import { notFound } from 'next/navigation';
+import { WikiRenderer } from '@/components/wiki/WikiRenderer';
 
 interface EraPageProps {
   params: Promise<{ era: string }> | { era: string };
@@ -18,12 +20,10 @@ export default async function EraPage({ params }: EraPageProps) {
   }
 
   const eraInfo = EraData[resolvedParams.era];
-
+  
   return (
-    <div className="prose prose-brown max-w-none">
-      <h1 className="text-text">{eraInfo.name}</h1>
-      <p className="text-lg text-text">{eraInfo.description}</p>
-      <p className="text-sm text-text-light">Years: {eraInfo.yearRange}</p>
-    </div>
+    <WikiRenderer content={eraInfo.description} />
   );
 } 
+
+

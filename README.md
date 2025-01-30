@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fantasy World Wiki Project
 
-## Getting Started
+## Purpose
+A personal fantasy world wiki showcasing different historical eras (Golden Period, Steel Era, Coal Age) with Wikipedia-like content and navigation.
 
-First, run the development server:
+## Core Features
+- Era-based navigation with equivalent locations across ages
+- WikiText markup rendering for content
+- URL format: `site-url/[era]/[place]#[section]`
+- Cross-era navigation that maintains section position
+- Header with era navigation (Golden/Steel/Coal)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Technical Stack
+- Next.js with TypeScript
+- TailwindCSS
+- WikiText parser for content rendering
+- (Future) Vercel hosting
+- (Future) Supabase database
+
+## Project Structure
+```
+src/
+├── app/
+│   ├── [era]/
+│   │   ├── page.tsx      # Dynamic era page handler
+│   │   └── layout.tsx    # Era-specific layout
+├── content/
+│   ├── golden-period/
+│   │   ├── metadata.ts   # Region mappings for this era
+│   │   ├── frontpage.txt # Era overview
+│   │   └── pages/        # WikiText content files
+│   │       ├── valloraich.txt
+│   │       ├── theutoland.txt
+│   │       └── ...
+│   ├── steel-era/
+│   │   └── ...
+│   ├── coal-age/
+│   │   └── ...
+│   └── images/          # Shared image repository
+├── components/
+│   └── wiki/
+│       ├── WikiRenderer.tsx    # WikiText to HTML converter
+│       ├── EraNav.tsx          # Era switching header
+│       └── SectionNav.tsx      # Section navigation/tracking
+└── types/
+    ├── era.ts           # Era type definitions
+    └── metadata.ts      # Content metadata types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### metadata.ts (per era)
+```typescript
+interface RegionMetadata {
+  id: string;                              // e.g., "valloraich"
+  equivalents: Record<string, string>;     // e.g., { "steel": "albrion", "coal": "angbria" }
+  pageContentDir: string;                  // e.g., "pages"
+}
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+const metadata: RegionMetadata[] = [
+  {
+    id: "valloraich",
+    equivalents: {
+      "steel": "albrion",
+      "coal": "angbria"
+    },
+    pageContentDir: "pages"
+  },
+  // ...
+];
+```
 
-## Learn More
+### WikiText Content Files (.txt)
+Standard WikiText markup format, similar to Wikipedia:
+```
+= Page Title =
+== Section ==
+Content with '''bold''' and ''italic'' text...
 
-To learn more about Next.js, take a look at the following resources:
+[[Image:example.jpg|thumb|Caption]]
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+=== Subsection ===
+More content...
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Future Considerations
+- User authentication and authorization
+- Edit history tracking
+- Content review system
+- Search functionality with era filters
+- Interactive timeline and map visualizations
+- Sidebar navigation
 
-## Deploy on Vercel
+## Development Priorities
+1. Basic era navigation and content rendering
+2. WikiText parser implementation (currently using Markdown as interim solution)
+3. Cross-era navigation with section maintenance
+4. Content management system
+5. Search functionality
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Note to Assistant
+- Always consult this README for context before making changes
+- Update this document when new decisions are made
+- Enforce the project structure strictly
+- Maintain consistent styling (brown/light historical theme)
+- Keep track of the transition from Markdown to WikiText
