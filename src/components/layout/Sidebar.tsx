@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { RandomButton } from '../RandomButton';
 
 export function Sidebar() {
   return (
@@ -26,18 +27,8 @@ export function Sidebar() {
         >
           Main Page
         </Link>
-        <Link 
-          href="/list-of-languages"
-          className="px-4 py-2 rounded-md text-text hover:bg-surface-dark/5 hover:text-primary transition-colors"
-        >
-          List of Languages
-        </Link>
-        <Link 
-          href="/random"
-          className="px-4 py-2 rounded-md text-text hover:bg-surface-dark/5 hover:text-primary transition-colors"
-        >
-          Random Page
-        </Link>
+
+        <RandomButton />
       </nav>
     </aside>
   );

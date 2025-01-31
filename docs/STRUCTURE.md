@@ -1,19 +1,21 @@
 # P├── app/
 │   ├── api/
-│   │   └── route.ts
+│   │   ├── equivalent/
+│   │   │   └── route.ts
+│   │   └── random/
+│   │       └── route.ts
 │   ├── favicon.ico
 │   ├── globals.css
 │   ├── layout.tsx
 │   ├── page.tsx
-│   ├── random/
-│   │   └── page.tsx
 │   └── [...path]/
 │       └── page.tsx
 ├── components/
-│   └── layout/
-│       ├── EraSelector.tsx
-│       ├── Header.tsx
-│       └── Sidebar.tsx
+│   ├── layout/
+│   │   ├── EraSelector.tsx
+│   │   ├── Header.tsx
+│   │   └── Sidebar.tsx
+│   └── RandomButton.tsx
 ├── content/
 │   ├── about.txt
 │   ├── coal/
@@ -27,12 +29,11 @@
 │   │   ├── metadata.json
 │   │   ├── theutoland.txt
 │   │   └── valloraich.txt
-│   ├── steel/
-│   │   ├── albrion.txt
-│   │   ├── carowiga.txt
-│   │   ├── frontpage.txt
-│   │   └── metadata.json
-│   └── yoy.txt
+│   └── steel/
+│       ├── albrion.txt
+│       ├── carowiga.txt
+│       ├── frontpage.txt
+│       └── metadata.json
 ├── declarations.d.ts
 ├── lib/
 │   └── utils/

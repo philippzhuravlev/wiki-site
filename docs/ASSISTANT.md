@@ -10,15 +10,17 @@
 - Era navigation uses metadata.json for region mapping
 - Content stored in .txt files under src/content
 - Dynamic routing handles all wiki pages
-- API endpoint (/api/route.ts) handles region equivalency lookups
-  - Takes currentRegion, currentEra, targetEra as query params
-  - Returns equivalent region ID based on metadata.json mapping
+- API endpoints:
+  - /api/equivalent handles region equivalency lookups
+  - /api/random provides random page navigation
+- RandomButton component handles client-side random navigation
+- Each era folder contains its own metadata.json for region mappings
 
 ## Important Decisions & History
 - Moved from static routes to dynamic [...path] routing
-- Simplified API structure by removing equivalent-region subfolder
+- Reorganized API structure into dedicated endpoint folders
+- Simplified random page navigation with client-side component
 - Using server components by default, client components only when needed
-- Metadata.json in each era folder defines region equivalencies
 - Planning transition from Markdown to WikiText parser
 
 ## Development Guidelines

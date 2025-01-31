@@ -31,7 +31,7 @@ export function EraSelector() {
       for (const targetEra of Object.keys(EraData)) {
         if (currentRegion && currentEra && targetEra !== currentEra) {
           const response = await fetch(
-            `/api?currentRegion=${currentRegion}&currentEra=${currentEra}&targetEra=${targetEra}`
+            `/api/equivalent?currentRegion=${currentRegion}&currentEra=${currentEra}&targetEra=${targetEra}`
           );
           const data = await response.json();
           links[targetEra] = data.equivalent 
@@ -54,7 +54,7 @@ export function EraSelector() {
     }
 
     const response = await fetch(
-      `/api?currentEra=${currentEra}&targetEra=${targetEra}&currentRegion=${currentRegion}`
+      `/api/equivalent?currentEra=${currentEra}&targetEra=${targetEra}&currentRegion=${currentRegion}`
     );
     const data = await response.json();
     

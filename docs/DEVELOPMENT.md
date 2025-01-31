@@ -6,18 +6,18 @@
 - **Client Components**: Marked with 'use client', handle interactivity
 
 ## Key Components
+- **RandomButton**: 
+  - Client component for random page navigation
+  - Uses /api/random endpoint
+  - Handles loading states and errors
 - **EraSelector**: 
   - Handles era navigation and equivalent region mapping
-  - Uses API to fetch equivalent regions
+  - Uses /api/equivalent endpoint
   - Updates URL based on region equivalencies
 - **[...path]/page.tsx**: 
   - Dynamic route handler for all wiki pages
   - Handles both era-specific and general pages
   - Loads and renders content from .txt files
-- **api/route.ts**: 
-  - Endpoint for region equivalency lookups
-  - Uses metadata.json to map regions between eras
-  - Returns equivalent region or null
 
 ## Content Management
 - Content stored in `src/content/{era}/`
@@ -26,7 +26,7 @@
 - Images stored in shared images directory
 
 ## API Documentation
-### GET /api
+### GET /api/equivalent
 Query Parameters:
 - currentRegion: string (region ID)
 - currentEra: string (era name)
@@ -36,6 +36,14 @@ Response:
 ```typescript
 {
   equivalent: string | null  // equivalent region ID or null if none exists
+}
+```
+
+### GET /api/random
+Response:
+```typescript
+{
+  redirect: string  // URL path to redirect to (e.g., "/golden/theutoland")
 }
 ```
 
