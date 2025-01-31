@@ -65,12 +65,10 @@ src/
 ├── lib/
 │   └── utils/                    # All utility functions
 │       ├── file-utils.ts         # File operations
-│       ├── wiki-utils.ts         # Wiki-specific utilities (parsing, navigation)
-│       └── era-utils.ts          # Era-specific utilities
+│       ├── link-utils.ts         # Link parsing
+│       ├── era-utils.ts          # Era-specific utilities
+│       └── render-utils.ts       # Content rendering
 ├── components/
-│   ├── wiki/                     # Wiki content components
-│   │   ├── WikiRenderer.tsx      # Content display component
-│   │   └── WikiLink.tsx         # Wiki link component
 │   └── layout/                   # Layout components
 │       ├── Header.tsx           # Main header
 │       └── EraSelector.tsx      # Era switching component

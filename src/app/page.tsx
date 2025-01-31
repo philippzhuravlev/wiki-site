@@ -1,15 +1,12 @@
-import React from 'react';
-import { WikiRenderer } from '@/components/wiki/WikiRenderer';
 import { loadTextFile } from '@/lib/utils/file-utils';
+import { renderWikiContent } from '@/lib/utils/render-utils';
 
-const FrontPage = async () => {
-    const content = loadTextFile('src/content/eraless/frontpage.txt');
+export default async function FrontPage() {
+    const content = loadTextFile('src/content/frontpage.txt');
 
     return (
         <div className="text-black">
-            <WikiRenderer content={content} />
+            {await renderWikiContent(content)}
         </div>
     );
-};
-
-export default FrontPage;
+}

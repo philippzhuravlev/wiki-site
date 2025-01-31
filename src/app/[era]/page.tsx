@@ -1,7 +1,7 @@
 import { EraData, type Era } from '@/types/era';
 import { notFound } from 'next/navigation';
-import { WikiRenderer } from '@/components/wiki/WikiRenderer';
 import { loadTextFile } from '@/lib/utils/file-utils';
+import { renderWikiContent } from '@/lib/utils/render-utils';
 
 interface EraPageProps {
   params: Promise<{ era: string }>;
@@ -24,7 +24,7 @@ export default async function EraPage({ params }: EraPageProps) {
 
   return (
     <div className="text-black">
-      <WikiRenderer content={content} />
+      {await renderWikiContent(content)}
     </div>
   );
 } 

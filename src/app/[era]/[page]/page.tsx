@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import { promises as fs } from 'fs';
 import path from 'path';
-import { WikiRenderer } from '@/components/wiki/WikiRenderer';
 import { loadTextFile } from '@/lib/utils/file-utils';
+import { renderWikiContent } from '@/lib/utils/render-utils';
 
 interface PageProps {
   params: Promise<{ era: string; page: string }>;
@@ -33,7 +33,7 @@ export default async function Page({ params }: PageProps) {
     
     return (
       <div className="text-black">
-        <WikiRenderer content={content} />
+        {await renderWikiContent(content)}
       </div>
     );
   } catch (error) {

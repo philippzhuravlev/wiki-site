@@ -1,0 +1,9 @@
+# About
+
+This is a wiki about the fantasy world of [[Fantasy World]].
+
+This wiki is a work in progress and is not yet complete.        
+
+## How to use this wiki
+
+This wiki is built with Next.js and React. It uses the [Markdown](https://www.markdownguide.org/) format for content.
