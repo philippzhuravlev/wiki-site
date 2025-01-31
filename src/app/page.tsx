@@ -1,9 +1,9 @@
 import React from 'react';
 import { WikiRenderer } from '@/components/wiki/WikiRenderer';
-import { loadTextFile } from '@/lib/utils/wiki-utils';
+import { loadTextFile } from '@/lib/utils/file-utils';
 
 const FrontPage = async () => {
-    const content = loadTextFile('src/content/ageless-pages/frontpage.txt');
+    const content = loadTextFile('src/content/eraless/frontpage.txt');
 
     return (
         <div className="text-black">

@@ -41,7 +41,7 @@ src/
 │   │   ├── page.tsx      # Dynamic era page handler
 │   │   └── layout.tsx    # Era-specific layout
 ├── content/
-│   ├── ageless-pages/
+│   ├── eraless/
 │   │   ├── frontpage.txt
 │   │   └── ...
 │   ├── golden/

@@ -1,4 +1,0 @@
-
-$$V = \frac{1}{2}$$
-
-###### Virker LaTeX?

@@ -1,8 +1,9 @@
 'use client';
 
-import { parseWikiLinks } from '@/lib/utils/wiki-utils';
+import { parseWikiLinks } from '@/lib/utils/link-utils';
 import { WikiLink } from './WikiLink';
 import ReactMarkdown from 'react-markdown';
+import { ComponentProps } from 'react';
 
 interface WikiContentProps {
   content: string;
@@ -11,9 +12,9 @@ interface WikiContentProps {
 export function WikiContent({ content }: WikiContentProps) {
   const { text, links } = parseWikiLinks(content);
 
-  // Custom renderer for markdown that handles our wiki link markers
-  const renderParagraph = ({ children }: { children: React.ReactNode }) => {
-    if (typeof children !== 'string') return <p>{children}</p>;
+  // Fixed type for renderParagraph
+  const renderParagraph = ({ children, ...props }: ComponentProps<'p'>) => {
+    if (typeof children !== 'string') return <p {...props}>{children}</p>;
 
     const elements = children.split(/(\{\{WIKILINK:\d+\}\})/g).map((part, index) => {
       const match = part.match(/\{\{WIKILINK:(\d+)\}\}/);
@@ -24,7 +25,7 @@ export function WikiContent({ content }: WikiContentProps) {
       return part;
     });
 
-    return <p>{elements}</p>;
+    return <p {...props}>{elements}</p>;
   };
 
   return (

@@ -1,29 +1,30 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-interface RegionMetadata {
+export interface RegionData {
   id: string;
   equivalents: Record<string, string>;
 }
 
 export async function getEquivalentRegion(currentEra: string, targetEra: string, currentRegion: string): Promise<string | null> {
   try {
-    console.log('getEquivalentRegion called with:', { currentEra, targetEra, currentRegion });
     const metadataPath = path.join(process.cwd(), 'src', 'content', currentEra, 'metadata.json');
-    console.log('Looking for metadata at:', metadataPath);
     const metadataContent = await fs.readFile(metadataPath, 'utf8');
     const { regions } = JSON.parse(metadataContent);
-    console.log('Loaded regions:', regions);
     
-    const currentRegionData = regions.find((r: RegionMetadata) => r.id === currentRegion);
-    console.log('Found region data:', currentRegionData);
+    const currentRegionData = regions.find((r: RegionData) => r.id === currentRegion);
     if (!currentRegionData) return null;
     
-    const equivalent = currentRegionData.equivalents[targetEra] || null;
-    console.log('Found equivalent:', equivalent);
-    return equivalent;
+    return currentRegionData.equivalents[targetEra] || null;
   } catch (error) {
-    console.error('Error in getEquivalentRegion:', error);
+    console.error('Error finding equivalent region:', error);
     return null;
   }
+}
+
+export function getEraNavigationUrl(targetEra: string, currentEra: string | undefined, currentRegion: string | undefined, hash: string = ''): string {
+  if (!currentEra || !currentRegion || currentEra === targetEra) {
+    return `/${targetEra}${hash}`;
+  }
+  return `/${targetEra}/${currentRegion}${hash}`;
 } 

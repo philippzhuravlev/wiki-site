@@ -5,12 +5,16 @@ import { WikiRenderer } from '@/components/wiki/WikiRenderer';
 import { loadTextFile } from '@/lib/utils/file-utils';
 
 interface PageProps {
-  params: Promise<{ era: string; page: string }> | { era: string; page: string };
+  params: Promise<{ era: string; page: string }>;
+}
+
+interface RegionData {
+  id: string;
+  equivalents: Record<string, string>;
 }
 
 export default async function Page({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { era, page } = resolvedParams;
+  const { era, page } = await params;
   
   try {
     // Load and validate metadata
@@ -19,7 +23,7 @@ export default async function Page({ params }: PageProps) {
     const { regions } = JSON.parse(metadataContent);
     
     // Check if page exists in metadata
-    const pageData = regions.find((r: any) => r.id === page);
+    const pageData = regions.find((r: RegionData) => r.id === page);
     if (!pageData) {
       notFound();
     }
@@ -29,7 +33,6 @@ export default async function Page({ params }: PageProps) {
     
     return (
       <div className="text-black">
-        {/* @ts-expect-error Async Component */}
         <WikiRenderer content={content} />
       </div>
     );

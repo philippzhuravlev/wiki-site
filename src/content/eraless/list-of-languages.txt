@@ -1,0 +1,12 @@
+# List of Languages
+
+| Language | Family | Region | Status | Notes |
+|----------|--------|---------|---------|--------|
+| Vallorian | Western | [[Valloraich]] | Living | Primary language of the Golden Period |
+| Albrish | Western | [[Albrion]] | Living | Evolved from Vallorian during Steel Era |
+| Angbrian | Western | [[Angbria]] | Living | Modern descendant of Albrish |
+| Eastspeak | Eastern | Eastern Lands | Living | Ancient language family still in use |
+| Old Runic | Northern | Northern Wastes | Extinct | Ritual language of the early periods |
+| Trade Tongue | Mixed | Various | Living | Common trading language across all eras |
+| Seafarer's Cant | Coastal | Coastal Regions | Living | Mariatime dialect used by sailors |
+| Desert Speech | Southern | Southern Deserts | Living | Collection of related desert dialects |

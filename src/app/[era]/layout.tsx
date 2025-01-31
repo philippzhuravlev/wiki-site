@@ -3,21 +3,21 @@ import { EraData, type Era } from '@/types/era';
 
 interface EraLayoutProps {
   children: React.ReactNode;
-  params: Promise<{ era: string }> | { era: string };
+  params: Promise<{ era: string }>;
 }
 
 export default async function EraLayout({
   children,
   params,
 }: EraLayoutProps) {
-  const resolvedParams = await params;
+  const { era } = await params;
   
   // Type guard to validate era
   const isValidEra = (era: string): era is Era => {
     return Object.values(EraData).some(e => e.id === era);
   };
 
-  if (!isValidEra(resolvedParams.era)) {
+  if (!isValidEra(era)) {
     notFound();
   }
 
