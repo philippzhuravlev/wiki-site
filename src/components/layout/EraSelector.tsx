@@ -18,40 +18,50 @@ const EraData: Record<string, EraInfo> = {
 
 export function EraSelector() {
   const params = useParams();
-  const currentEra = params.era as string;
+  const currentEra = params?.path?.[0];
+  const currentRegion = params?.path?.[1];
   const currentPage = params.page as string;
   const hash = typeof window !== 'undefined' ? window.location.hash : '';
   const [eraLinks, setEraLinks] = useState<Record<string, string>>({});
 
   useEffect(() => {
     async function updateEraLinks() {
-      console.log('updateEraLinks running with:', { currentEra, currentPage });
       const links: Record<string, string> = {};
       
       for (const targetEra of Object.keys(EraData)) {
-        if (currentPage && currentEra !== targetEra) {
-          console.log('Looking up equivalent for:', { currentEra, targetEra, currentPage });
-          
+        if (currentRegion && currentEra && targetEra !== currentEra) {
           const response = await fetch(
-            `/api/equivalent-region?currentEra=${currentEra}&targetEra=${targetEra}&currentPage=${currentPage}`
+            `/api?currentRegion=${currentRegion}&currentEra=${currentEra}&targetEra=${targetEra}`
           );
           const data = await response.json();
-          console.log('API response:', data);
-
           links[targetEra] = data.equivalent 
-            ? `/${targetEra}/${data.equivalent}${hash}`
+            ? `/${targetEra}/${data.equivalent}`
             : `/${targetEra}`;
         } else {
           links[targetEra] = `/${targetEra}`;
         }
       }
       
-      console.log('Final eraLinks:', links);
       setEraLinks(links);
     }
 
     updateEraLinks();
-  }, [currentEra, currentPage, hash]);
+  }, [currentEra, currentRegion]);
+
+  const getEraLink = async (targetEra: string) => {
+    if (targetEra === currentEra || !currentRegion) {
+      return `/${targetEra}`;
+    }
+
+    const response = await fetch(
+      `/api?currentEra=${currentEra}&targetEra=${targetEra}&currentRegion=${currentRegion}`
+    );
+    const data = await response.json();
+    
+    return data.equivalent 
+      ? `/${targetEra}/${data.equivalent}`
+      : `/${targetEra}`;
+  };
 
   return (
     <div className="flex gap-2 px-4">

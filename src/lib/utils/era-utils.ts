@@ -6,7 +6,7 @@ export interface RegionData {
   equivalents: Record<string, string>;
 }
 
-export async function getEquivalentRegion(currentEra: string, targetEra: string, currentRegion: string): Promise<string | null> {
+export async function getEquivalentRegion(currentRegion: string, currentEra: string, targetEra: string): Promise<string | null> {
   try {
     const metadataPath = path.join(process.cwd(), 'src', 'content', currentEra, 'metadata.json');
     const metadataContent = await fs.readFile(metadataPath, 'utf8');
