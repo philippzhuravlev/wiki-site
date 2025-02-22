@@ -2,7 +2,9 @@
 │   ├── api/
 │   │   ├── equivalent/
 │   │   │   └── route.ts
-│   │   └── random/
+│   │   ├── random/
+│   │   │   └── route.ts
+│   │   └── search/
 │   │       └── route.ts
 │   ├── favicon.ico
 │   ├── globals.css
@@ -15,7 +17,8 @@
 │   │   ├── EraSelector.tsx
 │   │   ├── Header.tsx
 │   │   └── Sidebar.tsx
-│   └── RandomButton.tsx
+│   ├── RandomButton.tsx
+│   └── Search.tsx
 ├── content/
 │   ├── about.txt
 │   ├── coal/

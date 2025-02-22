@@ -1,19 +1,12 @@
-You are in Albrion.
+### Geography 
 
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
-## This is the front page!
+<tab> //This article is a general overview of regional and continental divisions. For a list of regions and continents, see [[list_of_regions|List of Regions]]// \\
+
+On the [[urheimat|plane(t) of Urheimat]], the most important geographical divisions, namely the regions themselves, are part of a larger set of terms. They exists on a hierarchy: Supercontinents, continents, subcontinents, regions, areas, provinces and locations. These divisions arise due to the need to separate given a particular factor - the landmass, a religion, a lingual branch, a city - to imply a distinction worth making. The three key factors here are geography, [[language]] and [[religion]]. 
+
+[[urheimat|Urheimat]] itself is principally divided into three **continents**: [[occaid|Occaid]], [[orienn|Orienn]] and the [[neomene|Neoménē]], which are further subdivided into two **subcontinents** each. These subcontinents are then divided into 2-3 **regions**, which are listed below. Note that there are further divisions below regions: **Areas** span the portion of a region which is inhabited by a particular culture, while a **province** encompasses a larger settlement and its nearby **locations**, whether they be villages or tribal camps.
+
+Geographical divisions also vary between cultures; one culture may consider an entire subcontinent as one region, while another may consider a large area to be a region in and of itself. Nevertheless, over time and due to increasing globalization and colonization, most have settled on the geographical divisions below as formulated by the later geographers of [[occaid|Occaid]]. This incongruity in borders has also been useful for would-be-conquerors looking for a //casus belli// (in [[evestica|Lingua Evēstica]]: lit. "case for war; reason for war")
+
+==== Geographic and Historical Name ====
+These two terms refer to a system of standardized names have originated among geographers to describe each region, as the inhabitants each gave their own name to it. For example, the island known as [[valloraich|Valloraich]] was renamed [[albrion|Albrion]] after the albrionish people settled it, and this word morphed into Angbria by the [[coal_age|Coal Age (1800-1900 AUC)]]; these are all called the **Historic Names** for a region. To get the **Geographical Name**, one simply has to combine the first two letters of each name and put them together: **Va**lloraich / **Al**brion / **An**gbria becomes [[vaalan|Vaalan]]; geographical names designate the landmass, in this case the island itself. This standardization of region names arose among [[bysellenos|Bysellénic]] refugees who refused to call their archipelago “[[histallien|Histállien]]”, the new name given to it by Histállien conquistadors. Instead, they combined the [[arkheios|Arkhḗios]] / [[bysellenos|Bysellénos]] / [[histallien|Histállien]] aliases into the neologism "[[arbyhi|Arbyhi]]". Such naming conventions spread to other parts of the world, especially [[middiya|Middīya]], which itself had significant cultural shifts at this time. Soon they caught on, and have since been employed by geologists, historians and archeologists in efforts to avoid unwelcome connotations. 

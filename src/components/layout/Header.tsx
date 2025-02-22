@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { EraSelector } from './EraSelector';
+import { Search } from '../Search';
 
 export function Header() {
   return (
@@ -10,11 +11,12 @@ export function Header() {
         <div className="flex items-center justify-between h-10">
           <Link 
             href="/" 
-            className="text-xl font-bold px-4 text-text hover:text-primary transition-colors"
+            className="text-xl font-bold px-4 text-black hover:text-primary transition-colors"
           >
             Urheimat
           </Link>
           <EraSelector />
+          <Search />
         </div>
       </div>
     </header>
