@@ -9,6 +9,10 @@
 ## Key Implementation Details
 - Era navigation uses metadata.json for region mapping
 - Content stored in .txt files under src/content
+- Three distinct eras:
+  - Golden Period (500-800)
+  - Steel Era (1000-1500)
+  - Coal Age (1800-1900)
 - Dynamic routing handles all wiki pages
 - API endpoints:
   - /api/equivalent handles region equivalency lookups

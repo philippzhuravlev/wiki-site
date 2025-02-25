@@ -11,9 +11,9 @@ interface EraInfo {
 }
 
 const EraData: Record<string, EraInfo> = {
-  'golden': { id: 'golden', name: 'Golden Period', yearRange: '1200-1400' },
-  'steel': { id: 'steel', name: 'Steel Era', yearRange: '1400-1600' },
-  'coal': { id: 'coal', name: 'Coal Age', yearRange: '1600-1800' }
+  'golden': { id: 'golden', name: 'Golden Period', yearRange: '500-800' },
+  'steel': { id: 'steel', name: 'Steel Era', yearRange: '1000-1500' },
+  'coal': { id: 'coal', name: 'Coal Age', yearRange: '1800-1900' }
 };
 
 export function EraSelector() {

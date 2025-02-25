@@ -5,6 +5,14 @@
 - **Server Components**: Default in App Router, render on server
 - **Client Components**: Marked with 'use client', handle interactivity
 
+## Era System
+The wiki spans three distinct time periods:
+- **Golden Period**: Years 500-800
+- **Steel Era**: Years 1000-1500
+- **Coal Age**: Years 1800-1900
+
+Each era has its own content directory and metadata for region mapping.
+
 ## Key Components
 - **RandomButton**: 
   - Client component for random page navigation
@@ -14,6 +22,7 @@
   - Handles era navigation and equivalent region mapping
   - Uses /api/equivalent endpoint
   - Updates URL based on region equivalencies
+  - Displays era names and year ranges
 - **[...path]/page.tsx**: 
   - Dynamic route handler for all wiki pages
   - Handles both era-specific and general pages

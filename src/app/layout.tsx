@@ -15,7 +15,7 @@ const geistMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fantasy World Wiki",
+  title: "Urheimat",
   description: "A wiki for our fantasy world across three eras",
 };
 
