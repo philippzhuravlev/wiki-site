@@ -5,22 +5,24 @@ import { getEquivalentRegion } from '@/lib/utils/era-utils';
 import { promises as fs } from 'fs';
 import * as pathLib from 'path';
 
-interface PageProps {
-  params: Promise<{ path: string[] }>;
+// interface for the page properties
+interface PageProperties {
+  params: Promise<{ path: string[] }>; // (promised) path is an array of strings
 }
 
-const ERAS = ['golden', 'steel', 'coal'] as const;
-type Era = typeof ERAS[number];
+// create ERAS as a constant array (i.e. tuple) of strings
+const ERAS = ['golden', 'steel', 'coal'] as const; // Read-only; could be array/enum of eras
+type Era = typeof ERAS[number]; // or type Era = 'golden' | 'steel' | 'coal';
 
-export default async function ContentPage({ params }: PageProps) {
-  const { path } = await params;
+// export (so it can be imported) the page component as default
+export default async function ContentPage({ params: pathparam }: PageProperties) {
+  const { path } = await pathparam;
   
-  // Handle era routes
-  if (ERAS.includes(path[0] as Era)) {
+  // handle era routes
+  if (ERAS.includes(path[0] as Era)) { // i.e. if path[0] is one of the eras
     const currentEra = path[0] as Era;
 
-    if (path.length === 1) {
-      // Era frontpage like /golden
+    if (path.length === 1) { // i.e. if it's the frontpage of /golden, /steel, /coal
       try {
         const content = await loadTextFile(`src/content/${currentEra}/frontpage.txt`);
         return (
@@ -32,13 +34,16 @@ export default async function ContentPage({ params }: PageProps) {
         console.error('Error loading era frontpage:', error);
         notFound();
       }
-    } else {
-      // Era subpage like /golden/albrion
-      const currentRegion = path[1];
+    } else {    // i.e. if it's a subpage like /golden/valloraich, /steel/albrion, /coal/angbrea
+      const currentRegion = path[1]; // get "slug"
 
-      try {
-        // Use consistent path format
+      try { // to load metadata.json
+
+        // gets metadata path to ultimately read metadata.json
+        // NB: process.cwd() is the current working directory
+        // NB: pathLib.join() is a function that joins the current working directory with the path to the metadata.json file
         const metadataPath = pathLib.join(process.cwd(), 'src', 'content', currentEra, 'metadata.json');
+        // meanwhile fs.readFile() is a function that reads the metadata.json file
         const metadataContent = await fs.readFile(metadataPath, 'utf8');
         const { regions } = JSON.parse(metadataContent);
         
