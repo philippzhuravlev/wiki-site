@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface SearchResult {
   title: string;
@@ -13,6 +13,8 @@ export function Search() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [allPages, setAllPages] = useState<SearchResult[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Fetch all pages' titles and content
@@ -23,11 +25,32 @@ export function Search() {
     };
 
     fetchPages();
+
+    // Add click outside handler
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add blur handler for when window loses focus
+    const handleBlur = () => {
+      setIsOpen(false);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('blur', handleBlur);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.addEventListener('blur', handleBlur);
+    };
   }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setQuery(value);
+    setIsOpen(true);
 
     // Filter results based on query
     const filteredResults = allPages.filter(page =>
@@ -56,15 +79,16 @@ export function Search() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={searchRef}>
       <input
         type="text"
         value={query}
         onChange={handleSearch}
+        onFocus={() => setIsOpen(true)}
         placeholder=" Search..."
         className="search-input text-black"
       />
-      {results.length > 0 && (
+      {isOpen && results.length > 0 && (
         <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
           {results.map((result) => (
             <li key={result.path}>
