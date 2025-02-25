@@ -1,6 +1,9 @@
-import { promises as fs } from 'fs';
-import path from 'path';
-import { NextResponse } from 'next/server';
+// this file is used to get a random page from the database
+
+import { promises as fs } from 'fs'; // i.e. rename fs.promises to just fs
+import path from 'path';                    // no {} = default export, i.e. "main thing from this module"
+import { NextResponse } from 'next/server'; //    {} = named export, i.e. "specific pieces from this module"
+
 
 async function getAllPages(): Promise<Array<{ era: string; region: string }>> {
   const pages: Array<{ era: string; region: string }> = [];

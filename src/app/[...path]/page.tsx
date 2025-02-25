@@ -51,12 +51,13 @@ export default async function ContentPage({ params: pathparam }: PageProperties)
         const metadataPath = pathLib.join(process.cwd(), 'src', 'content', currentEra, 'metadata.json');
         // meanwhile fs.readFile() is a function that reads the metadata.json file
         const metadataContent = await fs.readFile(metadataPath, 'utf8');
-        const { regions } = JSON.parse(metadataContent) as { regions: Region[] };
-        
+        const { regions } = JSON.parse(metadataContent);
+        // or const regions = JSON.parse(metadataContent).regions;
+
         // i.e. "check if the region exists in the metadata.json file"
         // some() checks if ANY in the array matches the condition
         // => if it does, regionExists is true
-        const regionExists = regions.some(r => r.id === currentRegion);
+        const regionExists = regions.some((r: { id: string }) => r.id === currentRegion);
         if (!regionExists) {
           notFound();
         }
