@@ -61,7 +61,7 @@ export function Search() {
         type="text"
         value={query}
         onChange={handleSearch}
-        placeholder="Search..."
+        placeholder=" Search..."
         className="search-input text-black"
       />
       {results.length > 0 && (

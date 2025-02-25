@@ -29,7 +29,12 @@ module.exports = {
           light: '#8B4513', // Saddle brown for secondary text
         }
       },
+      textIndent: {
+        tab: '2em',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 } 
