@@ -1,1 +1,11 @@
-## This is the front page!
+# Welcome to the Wiki!
+
+What if the gods were a bunch of etymology nerds and linguistic purists?
+
+Urheimat (from German Urheimat, “original homeland”) is the working title name given to a fantasy/sci-fi world, heavily inspired by Dungeons and Dragons and Europa Universalis IV
+
+This wiki is a work in progress and is not yet complete.
+
+## How to use this wiki
+
+This wiki is built with Next.js and React. It uses the [Markdown](https://www.markdownguide.org/) format for content.

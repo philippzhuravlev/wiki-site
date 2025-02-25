@@ -5,7 +5,6 @@ export interface WikiLink {
 }
 
 
-
 export function getEraNavigationUrl(targetEra: string, currentEra: string | undefined, currentRegion: string | undefined, hash: string = ''): string {
   if (!currentEra || !currentRegion || currentEra === targetEra) {
     return `/${targetEra}${hash}`;

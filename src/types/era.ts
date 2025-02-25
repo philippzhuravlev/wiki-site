@@ -23,13 +23,13 @@ export const EraData: Record<Era, EraMetadata> = {
   [Eras.STEEL]: {
     id: Eras.STEEL,
     name: 'Era of Steel',
-    description: 'The age of innovation and industry',
+    description: 'The age of innovation and arcana',
     yearRange: '501-1000 AG'
   },
   [Eras.COAL]: {
     id: Eras.COAL,
     name: 'Coal Age',
-    description: 'The age of darkness and revolution',
+    description: 'The age of industry and revolution',
     yearRange: '1001-1500 AG'
   }
 }; 
