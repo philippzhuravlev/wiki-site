@@ -38,6 +38,23 @@ export function Search() {
     setResults(filteredResults);
   };
 
+  // Map era IDs to their display names
+  const getEraDisplayName = (eraId: string) => {
+    // Capitalize first letter of the era ID
+    const capitalizedEraId = eraId.charAt(0).toUpperCase() + eraId.slice(1);
+    
+    switch (capitalizedEraId) {
+      case 'Golden':
+        return 'Golden Period';
+      case 'Steel':
+        return 'Steel Era';
+      case 'Coal':
+        return 'Coal Age';
+      default:
+        return capitalizedEraId; // Return capitalized version if no match
+    }
+  };
+
   return (
     <div className="relative">
       <input
@@ -52,7 +69,12 @@ export function Search() {
           {results.map((result) => (
             <li key={result.path}>
               <a href={result.path} className="block px-4 py-2 text-black hover:bg-gray-100">
-                {result.title} <span className="text-gray-500">({result.path.split('/')[1]})</span>
+                {/* Capitalize the first letter of each word in the title */}
+                {result.title.split(' ')
+                  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(' ')}
+                {' '}
+                <span className="text-gray-500">({getEraDisplayName(result.path.split('/')[1])})</span>
               </a>
             </li>
           ))}
