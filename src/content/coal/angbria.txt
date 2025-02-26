@@ -1,6 +1,3 @@
-## ANGBRIA
+# Angbria
 
-You are in Angbria.  
-
-## This is the front page!
-
+Angbria is a grassy island region with a temperate climate. It is the home of the Angbrian people, who are the descendants of the [[steel|Steel Era]] [[steel/albrion|Albrion]] people. Albrion is home to many polities and species, many of whom have settled there only recently in the start of the [[coal|Coal Age]], but the core of Angbrian language and culture remains the same.

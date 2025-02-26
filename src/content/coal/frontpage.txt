@@ -1,2 +1,3 @@
-The coal era spans from 1800 to 1900
+# Coal Age
 
+The Coal Age spans from 1800 to 1900 AUC, and follows from the [[steel/frontpage|Steel Era]]. The Coal Age is best characterized by the widespread use of coal as a fuel source, and the development of steam-powered machinery; magic has adapted to these changes, and is now used in industry and warfare. 
