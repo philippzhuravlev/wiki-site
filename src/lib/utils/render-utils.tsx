@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { parseWikiLinks, WikiLink } from './link-utils';
 import Link from 'next/link';
 import type { Components } from 'react-markdown'
 
@@ -25,8 +24,8 @@ const components: Components = {
   em: ({node, ...props}) => <em className="italic" {...props} />,
 };
 
-// Pre-process the content to handle wiki-links
-function preprocessContent(content: string): { processedContent: string, links: WikiLink[] } {
+// Update preprocessContent to work with the new parseWikiLinks return type
+function preprocessContent(content: string): { processedContent: string } {
   // Handle headers (### to #)
   let processedContent = content.replace(/^###\s+/gm, '# ');
   processedContent = processedContent.replace(/^====\s+/gm, '## ');
@@ -34,21 +33,22 @@ function preprocessContent(content: string): { processedContent: string, links: 
   // Handle tabs
   processedContent = processedContent.replace(/<tab>/g, '\u00A0'.repeat(8));
 
-  // Parse wiki links
-  const { text, links } = parseWikiLinks(processedContent);
-  
-  // Replace wiki link placeholders with markdown links
-  processedContent = text.replace(/\{\{WIKILINK:(\d+)\}\}/g, (_, index) => {
-    const link = links[parseInt(index)];
-    return `[${link.text}](/${link.slug})`;
+  // Handle wiki links - process piped links first
+  processedContent = processedContent.replace(/\[\[(.*?)\|(.*?)\]\]/g, (_, path, display) => {
+    return `[${display}](/${path})`;
   });
 
-  return { processedContent, links };
+  // Then handle simple links - but only those that don't already have a pipe
+  processedContent = processedContent.replace(/\[\[([^\|]*?)\]\]/g, (_, path) => {
+    return `[${path}](/${path})`;
+  });
+
+  return { processedContent };
 }
 
 export async function renderWikiContent(content: string | Promise<string>) {
   const resolvedContent = await content;
-  const { processedContent, links } = preprocessContent(resolvedContent);
+  const { processedContent } = preprocessContent(resolvedContent);
   
   return (
     <div className="prose prose-brown max-w-none">
